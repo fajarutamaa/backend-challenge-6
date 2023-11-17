@@ -25,4 +25,4 @@ jobs:
         run: bats -v
 
       - name: Run Prisma Migration
-        run: npx prisma migrate dev --name init
+        run: npx prisma migrate dev --name database
