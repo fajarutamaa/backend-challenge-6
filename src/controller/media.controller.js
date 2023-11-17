@@ -6,40 +6,36 @@ const prisma = new PrismaClient
 
 async function AddPost(req, res) {
 
-    const { userId, title, description } = req.body
-    
+    const { title, description } = req.body
+
     const fileString = req.file.buffer.toString('base64')
     const uploadImage = await imagekit.upload({
-            fileName: req.file.originalname,
-            file: fileString
-        })
+        fileName: req.file.originalname,
+        file: fileString
+    })
 
     const payload = {
-        userId,
+        userId: req.users.id,
         image_url: uploadImage.url,
         title,
         description
     }
 
     try {
-        const checkUser = await prisma.users.findFirst({
-            where: {
-                id: req.body.userId
+        await prisma.feeds.create({
+            data: {
+                ...payload
             }
         })
 
-        if (!checkUser) {
-            let response = ResponseTemplate(null, 'not found', null, 404)
-            return res.status(404).json(response)
-        } else {
-            const addPost = await prisma.feeds.create({
-                data: {
-                   ...payload
-                }
-            })
-            let response = ResponseTemplate(addPost, 'post successfully', null, 200)
-            return res.status(200).json(response)
+        const payloadData = {
+            image_url: uploadImage.url,
+            title,
+            description
         }
+
+        let response = ResponseTemplate(payloadData, 'succes', null, 200)
+        return res.status(200).json(response)
     } catch (error) {
         console.log(error)
         let response = ResponseTemplate(null, 'internal server error', error, 500)
@@ -55,7 +51,7 @@ async function DeletePost(req, res) {
                 id
             }
         })
-        let response = ResponseTemplate(null, 'delete successfully', null, 200)
+        let response = ResponseTemplate(null, 'success', null, 200)
         return res.status(200).json(response)
     } catch (error) {
         let response = ResponseTemplate(null, 'internal server error', error, 500)
@@ -76,7 +72,7 @@ async function EditPost(req, res) {
     }
 
     if (title) {
-        payload.title=title
+        payload.title = title
     }
 
     if (description) {
@@ -85,11 +81,19 @@ async function EditPost(req, res) {
 
     try {
         const updateImage = await prisma.feeds.update({
-            where:{id}, 
-            data:{...payload}
+            where: { id },
+            data: { ...payload },
+            select:{
+                id:true,
+                title:true,
+                image_url:true,
+                description:true,
+                updatedAt:true,
+
+            }
         })
 
-        let response = ResponseTemplate(updateImage, 'update successfully', null, 200)
+        let response = ResponseTemplate(updateImage, 'success', null, 200)
         return res.status(200).json(response)
     } catch (error) {
         console.log(error)
@@ -98,13 +102,13 @@ async function EditPost(req, res) {
     }
 }
 
-async function ListPost(req, res){
+async function ListPost(req, res) {
     const { userId, image_url, title, description, page, perPage } = req.query
 
     const payload = {}
 
     if (userId) {
-        payload.userId = userId
+        payload.userId = req.users.id
     }
 
     if (image_url) {
@@ -130,6 +134,12 @@ async function ListPost(req, res){
 
         const allPost = await prisma.feeds.findMany({
             where: payload,
+            select:{
+                id:true,
+                image_url:true,
+                title:true,
+                description:true
+            },  
             orderBy: {
                 createdAt: 'asc'
             },
@@ -148,7 +158,7 @@ async function ListPost(req, res){
         res.status(500).json(response)
         return
     }
-    
+
 }
 
 module.exports = {

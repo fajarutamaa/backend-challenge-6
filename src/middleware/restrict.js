@@ -12,8 +12,8 @@ async function Authenticate(req, res, next) {
     }
 
     try {
-        const user = await jwt.verify(process.env.JWT_SECRET_KEY)
-        req.user = user
+        const user = await jwt.verify(authorization, process.env.JWT_SECRET_KEY)
+        req.users = user
         next()
     } catch (error) {
         let response = ResponseTemplate(null, 'user unauthorized', null, 401)

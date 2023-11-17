@@ -75,7 +75,7 @@ async function Login(req, res, next) {
 
         let token = jwt.sign(user, process.env.JWT_SECRET_KEY)
 
-        let response = ResponseTemplate({ user, token }, 'success', null, 200)
+        let response = ResponseTemplate(token, 'success', null, 200)
         res.status(200).json(response)
         return
 
@@ -84,16 +84,9 @@ async function Login(req, res, next) {
     }
 }
 
-async function Logout(req, res, next) { }
-
-
-async function ForgotPassword(req, res, next) { }
-
 
 
 module.exports = {
     Register,
     Login,
-    Logout,
-    ForgotPassword
 }
