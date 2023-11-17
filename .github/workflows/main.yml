@@ -1,16 +1,28 @@
 name: github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions 🚀
 on: [push]
+
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-            node-version: '16'
-      - run: npm install -g bats
-      - run: npm install nodemon prisma --save-dev
-      - run: npm install bcrypt express imagekit joi jsonwebtoken morgan dotenv multer
-      - run: bats -v
-      - run: npx prisma migrate dev --name init
+          node-version: '16'
+
+      - name: Install Bats
+        run: npm install -g bats
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Verify Bats Version
+        run: bats -v
+
+      - name: Run Prisma Migration
+        run: npx prisma migrate dev --name init
