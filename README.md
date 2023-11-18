@@ -1,3 +1,4 @@
+[![github-actions](https://github.com/fajarutamaa/backend-challenge-6/actions/workflows/main.yml/badge.svg)](https://github.com/fajarutamaa/backend-challenge-6/actions/workflows/main.yml)
 ## Project Setup
 
 Clone the project from GitHub repository:
