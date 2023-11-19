@@ -25,20 +25,50 @@ This repository includes the Entity-Relationship Diagram (ERD) illustrating the 
 
 ![App Screenshot](static/images/challenge6.png)
 
+## Basic Usage
+
+This project is deployed on the railway app at the following address: [`url`](https://backend-challenge-6-production.up.railway.app/). Below is an example documentation for `Register` and `Login`:
+
+| API Name | HTTP Method | URL                      |
+| -------- | ----------- | ------------------------ |
+| Register | `POST`      | url/api/v1/auth/Register |
+| Login    | `POST`      | url/api/v1/auth/Login    |
+
+Below are examples for `User`:
+
+| API Name             | HTTP Method | URL                           |
+| -------------------- | ----------- | ----------------------------- |
+| Change Photo Profile | `POST`      | url/api/v1/users/change-photo |
+| List Users           | `GET`       | url/api/v1/users              |
+| Detail User          | `GET`       | url/api/v1/users/:username    |
+| Delete User          | `DELETE`    | url/api/v1/users/:id          |
+
+Below are examples for `Feeds`:
+
+| API Name       | HTTP Method | URL                                 |
+| -------------- | ----------- | ----------------------------------- |
+| Add Posts      | `POST`      | url/api/v1/feeds/post               |
+| List Posts     | `GET`       | url/api/v1/feeds                    |
+| Update Caption | `PUT`       | url/api/v1/feeds/update-caption/:id |
+| Delete Data    | `DELETE`    | url/api/v1/feeds/:id                |
+
 ## Error Handling
 
-| Status Code | Meaning              | Error Message                     |
-|-------------|----------------------|-----------------------------------|
-| 200         | OK                   | Request successful                |
-| 400         | Bad Request          | Invalid request                   |
-| 401         | Unauthorized         | Authentication failed             |
-| 404         | Not Found            | Data not found                    |
-| 500         | Internal Server Error| Internal server error             |
+This table outlines the status codes, their meanings, and corresponding error messages for the API:
+
+| Status Code | Meaning                 | Error Message         |
+| ----------- | ----------------------- | --------------------- |
+| 200         | `OK`                    | Request successful    |
+| 400         | `Bad Request`           | Invalid request       |
+| 401         | `Unauthorized`          | Authentication failed |
+| 404         | `Not Found`             | Data not found        |
+| 500         | `Internal Server Error` | Internal server error |
+
+These status codes and messages are essential for understanding and troubleshooting API responses.
 
 ## Support and Contribution
 
 If you encounter issues or have questions, please open [Issues](https://github.com/fajarutamaa/backend-challenge-6/issues).
-
 We also welcome contributions!
 
 ## License
