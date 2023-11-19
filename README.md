@@ -1,5 +1,6 @@
 [![github-actions](https://github.com/fajarutamaa/backend-challenge-6/actions/workflows/main.yml/badge.svg)](https://github.com/fajarutamaa/backend-challenge-6/actions/workflows/main.yml)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/fajarutamaa/backend-challenge-6/blob/main/LICENSE)
+
 ## Project Setup
 
 Clone the project from GitHub repository:
@@ -24,6 +25,22 @@ This repository includes the Entity-Relationship Diagram (ERD) illustrating the 
 
 ![App Screenshot](static/images/challenge6.png)
 
+## Error Handling
+
+| Status Code | Meaning              | Error Message                     |
+|-------------|----------------------|-----------------------------------|
+| 200         | OK                   | Request successful                |
+| 400         | Bad Request          | Invalid request                   |
+| 401         | Unauthorized         | Authentication failed             |
+| 404         | Not Found            | Data not found                    |
+| 500         | Internal Server Error| Internal server error             |
+
+## Support and Contribution
+
+If you encounter issues or have questions, please open [Issues](https://github.com/fajarutamaa/backend-challenge-6/issues).
+
+We also welcome contributions!
+
 ## License
 
-For more information, see the [LICENSE](https://github.com/fajarutamaa/backend-challenge-6/blob/main/LICENSE)
+For more information, see the [MIT LICENSE](https://github.com/fajarutamaa/backend-challenge-6/blob/main/LICENSE)
