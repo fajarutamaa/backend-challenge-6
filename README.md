@@ -1,3 +1,5 @@
+[![github-actions](https://github.com/fajarutamaa/backend-challenge-6/actions/workflows/main.yml/badge.svg)](https://github.com/fajarutamaa/backend-challenge-6/actions/workflows/main.yml)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/fajarutamaa/backend-challenge-6/blob/main/LICENSE)
 ## Project Setup
 
 Clone the project from GitHub repository:

@@ -20,6 +20,3 @@ jobs:
 
       - name: Verify Bats Version
         run: bats -v
-
-      - name: Run Prisma Migration
-        run: npx prisma migrate dev --name init
