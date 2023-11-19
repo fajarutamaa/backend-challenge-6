@@ -18,11 +18,5 @@ jobs:
       - name: Install Bats
         run: npm install -g bats
 
-      - name: Install Dependencies
-        run: npm ci
-
       - name: Verify Bats Version
         run: bats -v
-
-      # - name: Run Prisma Migration
-      # run: npx prisma migrate dev --name database
